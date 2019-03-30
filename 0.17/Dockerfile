@@ -22,7 +22,7 @@ RUN mkdir -p /opt /factorio && \
     apk add --update --no-cache --virtual .build-deps curl && \
     curl -sSL https://www.factorio.com/get-download/$VERSION/headless/linux64 \
         -o /tmp/factorio_headless_x64_$VERSION.tar.xz && \
-    echo "$SHA1  /tmp/factorio_headless_x64_$VERSION.tar.xz" | sha1sum -c && \
+
     tar xf /tmp/factorio_headless_x64_$VERSION.tar.xz --directory /opt && \
     chmod ugo=rwx /opt/factorio && \
     rm /tmp/factorio_headless_x64_$VERSION.tar.xz && \
