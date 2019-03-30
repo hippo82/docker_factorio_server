@@ -18,11 +18,11 @@ ENV PORT=34197 \
     SCRIPTOUTPUT=/factorio/script-output
 
 RUN mkdir -p /opt /factorio && \
-    apk add --update --no-cache pwgen su-exec binutils gettext libintl wget && \
+    apk add --update --no-cache pwgen su-exec binutils gettext libintl && \
     apk add --update --no-cache --virtual .build-deps curl && \
-    wget https://www.factorio.com/get-download/$VERSION/headless/linux64 -o /tmp/factorio_headless_x64_$VERSION.tar.xz && \
+    curl -sSL https://www.dropbox.com/s/pg6a33to9gprwkh/factorio_headless_x64_0.17.23.tar.xz -o /tmp/factorio_headless_x64_$VERSION.tar.xz && \
     echo "$SHA1  /tmp/factorio_headless_x64_$VERSION.tar.xz" | sha1sum -c && \
-    tar -xvzf /tmp/factorio_headless_x64_$VERSION.tar.xz --directory /opt && \
+    tar xf /tmp/factorio_headless_x64_$VERSION.tar.xz --directory /opt && \
     chmod ugo=rwx /opt/factorio && \
     rm /tmp/factorio_headless_x64_$VERSION.tar.xz && \
     ln -s $SAVES /opt/factorio/saves && \
